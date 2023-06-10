@@ -9,12 +9,10 @@ import java.sql.Statement;
 
 public class ProgramUpdate {
     public static void main(String[] args) {
-
+        PreparedStatement ps = null;
         try {
             Connection connection = DB.getConnection();
-            PreparedStatement ps =
-                    connection
-                            .prepareStatement(
+            ps = connection.prepareStatement(
                                     "UPDATE seller " +
                                             "SET BaseSalary = BaseSalary + ? " +
                                             "WHERE (DepartmentId = ? )"
@@ -28,6 +26,9 @@ public class ProgramUpdate {
             System.out.println("Done! Rows affected: " + rowsAffected);
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            DB.closeStatement(ps);
+            DB.closeConnection();
         }
     }
 }
