@@ -41,7 +41,7 @@ public class SellerDaoJDBC implements SellerDao {
     @Override
     public Seller findById(Integer id) {
         PreparedStatement ps = null;
-        ResultSet rs;
+        ResultSet rs = null;
         try {
             ps = connection.prepareStatement("" +
                     "SELECT seller.*, department.Name as DepName " +
@@ -60,6 +60,7 @@ public class SellerDaoJDBC implements SellerDao {
             throw new DbException(e.getMessage());
         } finally {
             DB.closeStatement(ps);
+            DB.closeResultSet(rs);
         }
         return null;
     }
@@ -92,7 +93,7 @@ public class SellerDaoJDBC implements SellerDao {
     public List<Seller> findByDepartment(Department department) {
 
         PreparedStatement statement = null;
-        ResultSet resultSet;
+        ResultSet resultSet = null;
 
         try {
             statement = connection
@@ -123,6 +124,7 @@ public class SellerDaoJDBC implements SellerDao {
             throw new DbException(e.getMessage());
         } finally {
             DB.closeStatement(statement);
+            DB.closeResultSet(resultSet);
         }
     }
 }
