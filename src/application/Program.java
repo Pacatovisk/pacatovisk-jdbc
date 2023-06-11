@@ -13,7 +13,7 @@ public class Program {
         Department obj = new Department(1, "books");
         System.out.println(obj);
 
-        Seller seller = sellerDao.findById(1);  // new Seller(1,"Marcelo","Marcelo@gmail.com",  new Date(),2000.0,obj);
+        Seller seller = sellerDao.findById(1);
         System.out.println(seller);
 
     }
