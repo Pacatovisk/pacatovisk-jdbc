@@ -29,6 +29,10 @@ public class Department implements Serializable {
         this.name = name;
     }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
